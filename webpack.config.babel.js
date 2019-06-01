@@ -38,19 +38,32 @@ const base = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
+      },
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader'
           }
         ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        use: 'react-hot-loader/webpack',
+        include: /node_modules/
       }
     ]
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   }
 };
 
